@@ -1,6 +1,11 @@
 let linkInput = document.getElementById('link-input');
+let form = document.getElementById('form');
 async function fetchApi(url){
     const res = await fetch(url);
-    return res;
+    console.log(res.result);
 }
-fetch("https://api.shrtco.de/v2/shorten?url=example.org/very/long/link.html");
+form.onsubmit = function(e) {
+    e.preventDefault();
+    let results = fetchApi(`https://api.shrtco.de/v2/shorten?url=${linkInput.value}`);
+}
+
